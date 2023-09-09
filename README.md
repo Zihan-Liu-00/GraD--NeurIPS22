@@ -1,6 +1,8 @@
 # GraD
 Implementation for **NeurIPS 2022** paper 'Towards Reasonable Budget Allocation in Untargeted Graph Structure Attacks via Gradient Debias'
 
+In this work, we find a little but critical 'bug' in Metattack (Zugner et al.) and receive a big improvement in attack performance. All you need to think about is that a loss for a node sample in a node-level task doesn't only affect the node itself, but also affect other node because of the edges. A bad prediction will produce a higher gradient by cross-entropy loss from backpropagation, however, is this what an attacer really want?
+
 To reproduce the attack performance:
 1. Set the attack scenario (dataset, pert. rate) from ```train_GraD.py```
 2. Run ```train_GraD.py``` to generate the attacked graph
