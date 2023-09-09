@@ -12,6 +12,9 @@ To reproduce the attack performance:
 **Tips:**  
 The value of hyperparameter 'momentum' in <class GraD> in ```attack.py``` is relatively important. The momentum needs to be at an appropriate value that allows the surrogate model to have high accuracy as well as confidence in the prediction. The adjustment of the momtemtum parameter only needs to refer to the performance of the surrogate model during the attack, without using the label of the test nodes.
 
+Please find our paper at:
+https://papers.nips.cc/paper_files/paper/2022/hash/b31aec087b4c9be97d7148dfdf6e062d-Abstract-Conference.html
+
 To cite this paper in latex, please copy and paste:  
 @inproceedings{liu2022towards,
   title={Towards Reasonable Budget Allocation in Untargeted Graph Structure Attacks via Gradient Debias},
