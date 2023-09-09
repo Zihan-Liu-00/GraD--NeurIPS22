@@ -17,3 +17,5 @@ To cite this paper in latex, please copy and paste:
   booktitle={Advances in Neural Information Processing Systems},
   year={2022}
 }
+
+For any question, please leave an issue or send email to zihanliu@hotmail.com or liuzihan@westlake.edu.cn
