@@ -23,4 +23,4 @@ To cite this paper in latex, please use:
   year={2022}
 }
 
-For any question, please leave an issue or send email to zihanliu@hotmail.com or liuzihan@westlake.edu.cn
+For any question, please leave an issue or send an email to zihanliu@hotmail.com or liuzihan@westlake.edu.cn
