@@ -247,20 +247,21 @@ class GraD(BaseAttack):
             self.inner_train(features, adj_norm, idx_train, idx_unlabeled, labels)
             adj_grad = self.get_structural_grad(features, adj_norm, idx_unlabeled, labels_self_training)
 
-            directed_adj_grad = adj_grad * (-2 * modified_adj + 1)
-            directed_adj_grad -= directed_adj_grad.min()
-            directed_adj_grad -= torch.diag(torch.diag(directed_adj_grad, 0))
-            singleton_mask = self.filter_potential_singletons(modified_adj)
-            directed_adj_grad = directed_adj_grad *  singleton_mask
-
-            # Get argmax of the gradients.
-            adj_grad_argmax = torch.argmax(directed_adj_grad)
-            row_idx, col_idx = utils.unravel_index(adj_grad_argmax, ori_adj.shape)
-            self.adj_changes.data[row_idx][col_idx] += (-2 * modified_adj[row_idx][col_idx] + 1)
-            self.adj_changes.data[col_idx][row_idx] += (-2 * modified_adj[row_idx][col_idx] + 1)
-
-            if self.attack_features:
-                pass
+            with torch.no_grad():
+                directed_adj_grad = adj_grad * (-2 * modified_adj + 1)
+                directed_adj_grad -= directed_adj_grad.min()
+                directed_adj_grad -= torch.diag(torch.diag(directed_adj_grad, 0))
+                singleton_mask = self.filter_potential_singletons(modified_adj)
+                directed_adj_grad = directed_adj_grad *  singleton_mask
+    
+                # Get argmax of the gradients.
+                adj_grad_argmax = torch.argmax(directed_adj_grad)
+                row_idx, col_idx = utils.unravel_index(adj_grad_argmax, ori_adj.shape)
+                self.adj_changes.data[row_idx][col_idx] += (-2 * modified_adj[row_idx][col_idx] + 1)
+                self.adj_changes.data[col_idx][row_idx] += (-2 * modified_adj[row_idx][col_idx] + 1)
+    
+                if self.attack_features:
+                    pass
 
         return self.adj_changes + ori_adj
 
